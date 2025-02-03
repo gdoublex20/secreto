@@ -46,6 +46,7 @@ export class CartaComponent {
     }, 100); // Duración de la animación
 
     this.altura();
+    this.botonEventoService.musicaClickEvent();
   }
 
   altura() {

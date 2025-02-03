@@ -103,35 +103,29 @@
 
 @media (max-width: 768px) {
   .subcontenedor {
-    width: 400PX;
+    width: 300PX;
     height: 200px;
     font-size: 1.5em;
   }
   .subcontenedor2 {
-    width: 400PX;
+    width: 300PX;
     height: 200px;
     font-size: 1.5em;
   }
 
   .cartaImg {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para mejor visualización */
-    width: 400px;
+    width: 300px;
     height: auto; /* Mantiene la proporción de la imagen */
     position: absolute; /* Permite ajustar la posición de la imagen */
     top: 0; /* Alinea la parte superior de la imagen con el contenedor */
     left: 0; /* Alinea la parte izquierda de la imagen con el contenedor */
 
   }
-  .triangulo {
-    top: -40px; /* Ajusta la posición vertical en dispositivos móviles */
-    border-left: 100px solid transparent; /* Ajusta el tamaño del triángulo */
-    border-right: 100px solid transparent; /* Ajusta el tamaño del triángulo */
-    border-bottom: 90px solid #007bff; /* Reduce la altura del triángulo */
-  }
 
   .subcontenedor::before {
-    border-left: 200px solid transparent;
-    border-right: 200px solid transparent;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
     border-top: 50px solid #fbc2eb;
     border-radius: 10px;
   }

@@ -1,11 +1,12 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { BotonEventoService } from './../boton-evento.service';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-musica',
   templateUrl: './musica.component.html',
   styleUrls: ['./musica.component.css']
 })
-export class MusicaComponent implements AfterViewInit {
+export class MusicaComponent implements AfterViewInit, OnInit {
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
   private audioPlayed = false; // Para evitar reproducir múltiples veces
 
@@ -15,6 +16,13 @@ export class MusicaComponent implements AfterViewInit {
   ];
 
   cancionActualIndex = 0;
+
+  constructor(private botonEventoService: BotonEventoService) {}
+  ngOnInit(): void {
+    this.botonEventoService.musicaClick$.subscribe(() => {
+      this.configurarReproduccionAutomatica();
+    })
+  }
 
   ngAfterViewInit(): void {
     this.configurarReproduccionAutomatica();
