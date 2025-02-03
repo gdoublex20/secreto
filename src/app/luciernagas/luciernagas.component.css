@@ -1,0 +1,41 @@
+/* src/app/app.component.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0a0a0a; /* Fondo oscuro */
+  position: relative; /* Asegura que las luciérnagas se posicionen correctamente */
+}
+
+.firefly {
+  position: absolute;
+  width: 10px; /* Tamaño un poco más grande para mejor visibilidad */
+  height: 10px;
+  background-color: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 10px yellow, 0 0 20px yellow, 0 0 30px yellow;
+  animation: moveFirefly linear infinite, glowFirefly ease-in-out infinite;
+  z-index: 1; /* Asegura que estén por encima de otros elementos */
+}
+
+@keyframes moveFirefly {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50px, 50px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes glowFirefly {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}

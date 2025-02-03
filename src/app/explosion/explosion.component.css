@@ -1,0 +1,16 @@
+.wave-container {
+  position: fixed; /* Para que no afecte el flujo de la página */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 200vh;
+  pointer-events: none; /* Para que no interfiera con clics */
+  overflow: hidden; /* Para que los GIFs no salgan de la pantalla */
+}
+
+.particle {
+  position: absolute;
+  width: 100px; /* Ajusta el tamaño del GIF */
+  height: 100px;
+  border-radius: 50%; /* Hace que el GIF sea circular */
+}

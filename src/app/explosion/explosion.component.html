@@ -1,0 +1,4 @@
+<div class="wave-container">
+  <!-- Partículas que rebotan -->
+  <img *ngFor="let particle of particles" [src]="particle.src" class="particle" [ngStyle]="particle.style">
+</div>
