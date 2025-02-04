@@ -13,7 +13,7 @@ export class ExplosionComponent implements OnInit {
   particles: { src: string, style: any, x: number, y: number, vx: number, vy: number }[] = [];
   gravity = 0.1; // Gravedad para que caigan
   friction = 0.99; // Fricción para reducir la velocidad
-  particleSize = 50; // Tamaño de los GIFs
+  particleSize = 70; // Tamaño de los GIFs
 
   constructor(private botonEventoService:BotonEventoService){}
 
@@ -30,7 +30,7 @@ export class ExplosionComponent implements OnInit {
   }
 
   createWave(): void {
-    const particleCount = 30; // Número de partículas (aumenta este número)
+    const particleCount = 20; // Número de partículas (aumenta este número)
     for (let i = 0; i < particleCount; i++) {
       const startX = Math.random() * window.innerWidth; // Posición horizontal aleatoria
       const startY = Math.random() * window.innerHeight; // Posición vertical aleatoria

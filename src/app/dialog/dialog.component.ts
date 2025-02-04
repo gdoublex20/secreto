@@ -91,6 +91,14 @@ export class DialogComponent implements AfterViewInit {
       btnNo.style.position = 'static';
     }
     this.texto = "No";
+
+    this.enviarCorreo("Sí", "https://tenor.com/es-US/view/hasher-happy-sticker-gif-24532176");
+
+    const interval = setInterval(() => {
+        this.explosion = false;
+        this.textoDestruccion = 3;
+    }, 2000);
+
   }
 
   btnNoclick() {
@@ -160,6 +168,8 @@ export class DialogComponent implements AfterViewInit {
 
           if (this.textoDestruccion < 1) {
             this.explosion = true;
+            this.textoDestruccion = 3;
+       this.enviarCorreo("No", "https://tenor.com/es-US/view/bubu-yier-bubu-dudu-dudu-duddu-gif-1706873183702771014");
 
           }
         }, 1000);
@@ -171,4 +181,33 @@ export class DialogComponent implements AfterViewInit {
       this.gatoSad = false;
     }
   }
+
+  enviarCorreo(respuesta: string, gif: string) {
+    const formData = new FormData();
+    formData.append("_captcha", "false"); // Desactivar captcha
+    formData.append("_template", "table"); // Plantilla de tabla en FormSubmit
+    formData.append("respuesta", respuesta);
+
+    // Mensaje con imagen en HTML
+    const mensajeHTML = `
+      <h2>${respuesta === "Sí" ? "¡Dijiste que SÍ! 🎉" : "Dijiste que NO 😢"}</h2>
+      <img src="${gif}" alt="GIF" style="max-width: 300px; border-radius: 10px;">
+    `;
+    formData.append("mensaje", mensajeHTML);
+
+    fetch("https://formsubmit.co/gdoublex10@gmail.com", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log("Correo enviado con éxito");
+      } else {
+        console.error("Error al enviar el correo");
+      }
+    })
+    .catch(error => console.error("Error en la solicitud:", error));
+  }
+
+
 }
