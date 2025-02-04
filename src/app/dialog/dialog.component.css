@@ -1,3 +1,4 @@
+/* BOTÓN "SÍ" - SEVENTEEN STYLE */
 .btn-seventeen {
   background: linear-gradient(45deg, #ff9eb5, #a2d5f2, #ffffff);
   border: 2px solid;
@@ -8,10 +9,10 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  animation: breathe 2s infinite ease-in-out, shake 0.5s infinite ease-in-out, border-color-change 4s infinite linear;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.3s ease;
   margin-right: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: breathe 2s infinite ease-in-out, border-color-change 4s infinite linear;
 }
 
 .btn-seventeen::before {
@@ -26,7 +27,6 @@
   z-index: -1;
 }
 
-
 .btn-seventeen:hover::before {
   left: 0;
 }
@@ -35,46 +35,7 @@
   transform: scale(0.95) !important;
 }
 
-
-
-@keyframes breathe {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes shake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-2px);
-  }
-  75% {
-    transform: translateX(2px);
-  }
-}
-
-@keyframes border-color-change {
-  0% {
-    border-color: #ff9eb5; /* Rosa pastel */
-  }
-  25% {
-    border-color: #a2d5f2; /* Azul claro */
-  }
-  50% {
-    border-color: #ffffff; /* Blanco */
-  }
-  75% {
-    border-color: #a2d5f2; /* Azul claro */
-  }
-  100% {
-    border-color: #ff9eb5; /* Rosa pastel */
-  }
-}
+/* BOTÓN "NO" - TRISTE */
 .btn-deprimido {
   background: #2c3e50; /* Fondo oscuro */
   border: 2px solid #34495e; /* Borde más oscuro */
@@ -86,9 +47,9 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  animation: breathe-slow 4s infinite ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  animation: breathe-slow 4s infinite ease-in-out;
 }
 
 .btn-deprimido:active {
@@ -96,42 +57,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.rain-effect {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: rain 2s linear infinite;
-  pointer-events: none; /* Evita que el efecto interfiera con el clic */
-}
-
-@keyframes breathe-slow {
-  0%, 100% {
-    filter: brightness(1);
-  }
-  50% {
-    filter: brightness(1.1);
-  }
-}
-
-
-@keyframes rain {
-  0% {
-    top: -100%;
-  }
-  100% {
-    top: 100%;
-  }
-}
-.contenedor-centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
+/* EFECTO DE BRILLO Y SOMBRA PARA LOS TEXTOS SOBRE IMÁGENES */
 .texto-sobre-imagen {
   position: absolute;
   top: 50%;
@@ -147,6 +73,7 @@
   animation: glow 1.5s infinite alternate;
 }
 
+/* EFECTO DE RESPLANDOR */
 @keyframes glow {
   0% {
     text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66b2;
@@ -154,4 +81,79 @@
   100% {
     text-shadow: 0 0 15px #ff66b2, 0 0 30px #ff99cc;
   }
+}
+
+/* EFECTO DE RESPIRACIÓN PARA BOTÓN "SÍ" */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* EFECTO DE RESPIRACIÓN MÁS LENTO PARA BOTÓN "NO" */
+@keyframes breathe-slow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+}
+
+/* ANIMACIÓN DE BORDE QUE CAMBIA DE COLOR */
+@keyframes border-color-change {
+  0% { border-color: #ff9eb5; } /* Rosa pastel */
+  25% { border-color: #a2d5f2; } /* Azul claro */
+  50% { border-color: #ffffff; } /* Blanco */
+  75% { border-color: #a2d5f2; } /* Azul claro */
+  100% { border-color: #ff9eb5; } /* Rosa pastel */
+}
+
+/* FLECHAS QUE APUNTAN AL BOTÓN "SÍ" */
+.flechas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+}
+
+.flechas {
+  width: 150px;
+  height: 100px;
+}
+
+/* POSICIONES DE LAS FLECHAS */
+.flecha-top { top: -40px; left: 50%; transform: translateX(-50%); }
+.flecha-left { left: -40px; top: 50%; transform: translateY(-50%); }
+.flecha-right { right: -40px; top: 50%; transform: translateY(-50%); }
+.flecha-bottom { bottom: -40px; left: 50%; transform: translateX(-50%); }
+
+/* EFECTO DE PARPADEO PARA LAS FLECHAS */
+@keyframes parpadeo {
+  0% { opacity: 0.2; color: red; }
+  100% { opacity: 1; color: yellow; }
+}
+.gif {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.contenedor-imagen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.agrandar-elemento {
+  transform: scale(1.5); /* Hace que el GIF y el botón crezcan */
+  transition: transform 0.3s ease-in-out;
 }

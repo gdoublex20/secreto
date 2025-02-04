@@ -33,16 +33,33 @@
 
       <h3>¿Me darias el honor de ser tu valentine day?</h3>
 
-  <p style="text-align: center;" *ngIf="btnSi && !btnNo" class="contenedor-imagen">
-    <img src="../assets/mingyu2.gif" class="gif">
-    <span class="texto-sobre-imagen">MINGYU BAILA PORQUE DIJISTE QUE SÍ</span>
-  </p>
+      <p *ngIf="btnSi && !btnNo" class="contenedor-imagen">
+        <img src="../assets/mingyu2.gif" class="gif">
+        <span class="texto-sobre-imagen">MINGYU BAILA PORQUE DIJISTE QUE SÍ</span>
+      </p>
 
-  <p style="text-align: center;" *ngIf="btnNo && !btnSi" class="contenedor-imagen">
-    <img src="../assets/sad.gif" class="gif">
-    <span class="texto-sobre-imagen">QUÉ SAD</span>
-  </p>
+      <p *ngIf="btnNo && falso" class="contenedor-imagen">
+        <img src="../assets/sad.gif" class="gif" style="width: 200px; height: 200px;">
+        <span class="texto-sobre-imagen">QUÉ SAD</span>
+      </p>
 
-  <p style="text-align: center;">
-    <button class="btn-seventeen" (click)="btnSiclick()">SÍ</button>
-    <button class="btn-deprimido" (click)="btnNoclick()">No</button>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-6">
+          <!-- Agrandar el GIF de flechas cuando el botón "No" es presionado -->
+          <label *ngIf="btnNo">
+            <img src="../assets/flechas.gif" class="flechas" [ngClass]="{ 'agrandar-elemento': agrandarFlechas }">
+          </label>
+          <!-- Agrandar el botón "Sí" cuando el contador está en ciertos casos -->
+          <button class="btn-seventeen" (click)="btnSiclick()" [ngClass]="{ 'agrandar-elemento': agrandarBotonSi }">SÍ</button>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label *ngIf="btnNo"><img src="../assets/flechas.gif" class="flechas" style="opacity: 0;"></label>
+          <button class="btn-deprimido" (click)="btnNoclick()" id="btnNoMover">{{ texto }}</button>
+        </div>
+    </div>
+    </mat-dialog-actions>

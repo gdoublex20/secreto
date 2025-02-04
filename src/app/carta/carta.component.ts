@@ -40,6 +40,7 @@ export class CartaComponent {
 
   onButtonClick() {
     this.buttonState = 'exploded'; // Cambia el estado para activar la animación
+
     setTimeout(() => {
       this.isExploded = true; // Oculta el botón después de la animación
       this.height += 1; // Incrementar la altura en 10px cada segundo
