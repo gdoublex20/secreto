@@ -14,7 +14,6 @@
   border-radius: 10px;
   box-shadow: 0 10px 50px rgb(213, 126, 235);
   animation: inclinacion 3s infinite alternate;
-  display: flex;
   justify-content: center;
   align-items: center;
   color: white;
@@ -28,18 +27,9 @@
   width: 500px;
   height: 300px;
   background: linear-gradient(135deg, #ff9a9e, #fbc2ebfa);
-  position: relative;
   border-radius: 10px;
   box-shadow: 0 10px 50px rgb(213, 126, 235);
   animation: inclinacion 3s infinite alternate;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
 }
 
 
@@ -55,7 +45,38 @@
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
+  animation: breatheText 3s infinite ease-in-out; /* Aplica la animación */
 }
+
+.letra2{
+  animation: breatheText2 3s infinite ease-in-out;
+}
+
+/* ANIMACIÓN DE RESPIRACIÓN Y BRILLO PARA EL TEXTO */
+@keyframes breatheText {
+  0%, 100% {
+    transform: scale(1);
+    color: #ff9eb5; /* Rosa pastel */
+    text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66b2; /* Brillo rosa y azul */
+  }
+  50% {
+    transform: scale(1.1);
+    color: #a2d5f2; /* Azul claro */
+    text-shadow: 0 0 20px #ff66b2, 0 0 40px #a2d5f2; /* Brillo más intenso */
+  }
+}
+
+@keyframes breatheText2 {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px #cdd489, 0 0 20px #dbe72b; /* Brillo rosa y azul */
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px #edf39e, 0 0 40px #b9f023; /* Brillo más intenso */
+  }
+}
+
 
 /* Solapa superior del sobre (triángulo hacia abajo) */
 .subcontenedor::before {

@@ -16,9 +16,28 @@ export class DialogComponent implements AfterViewInit {
   btnSi: boolean = false;
   btnNo: boolean = false;
   texto: string = 'No';
+  imagenes: string[] = [
+    '../assets/sad1.gif',
+    '../assets/sad2.gif',
+    '../assets/sad3.gif',
+    '../assets/sad4.gif',
+    '../assets/sad5.gif',
+    '../assets/sad6.gif'
+  ];
+  imgActual: string = '';
   contador: number = 0;
-  agrandarFlechas: boolean = false; // Variable para agrandar las flechas
-  agrandarBotonSi: boolean = false; // Variable para agrandar el botón "Sí"
+  please: boolean = true;
+  gatoSad: boolean = false;
+  gatoSenialando: boolean = false;
+  gatoSenialando2: boolean = false;
+  flecha: boolean = false;
+  botonAbajo: boolean = false;
+  scaleFactor = 1;
+  flecha2 = false;
+  mostrarBotones = false;
+  btnNoDestruccion = false;
+  textoDestruccion = 3;
+  explosion: boolean = false;
 
   falso = false;
 
@@ -28,8 +47,8 @@ export class DialogComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.tituloRef.nativeElement.focus();
-    }, 0);
+      this.mostrarBotones = true;
+    }, 4000);
   }
 
   moverBotonNo() {
@@ -44,16 +63,27 @@ export class DialogComponent implements AfterViewInit {
 
       btnNo.style.position = 'absolute';
       btnNo.style.left = `${newX}px`;
+      btnNo.style.bottom = `170px`;
     }
   }
 
   btnSiclick() {
     this.botonEventoService.notificarBotonClickeado();
 
+    this.scaleFactor = Math.min(1);
+    document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
     this.btnSi = true;
     this.btnNo = false;
-    this.agrandarFlechas = false; // Restauramos el tamaño de las flechas
-    this.agrandarBotonSi = false; // Restauramos el tamaño del botón "Sí"
+    this.please = false;
+    this.gatoSad = false;
+    this.falso = false;
+    this.botonAbajo = false;
+    this.gatoSenialando = false;
+    this.gatoSenialando2 = false;
+    this.flecha = false;
+    this.btnNoDestruccion = false;
+
+    this.explosion = false;
 
     // Restaurar la posición original del botón "No"
     const btnNo = document.getElementById('btnNoMover');
@@ -64,45 +94,81 @@ export class DialogComponent implements AfterViewInit {
   }
 
   btnNoclick() {
+
+    this.please = false;
     this.contador++;
     this.moverBotonNo();
     this.btnNo = true;
 
+    this.botonAbajo = true;
     switch (this.contador) {
       case 1:
-        this.texto = 'NOOO ERA EL OTRO';
-        this.agrandarFlechas = true;
-        this.agrandarBotonSi = true; // Aumentamos el tamaño del botón "Sí"
+        this.texto = 'NO CONTO PICALE OTRA VEZ';
+        this.imgActual = this.imagenes[0];
+        this.gatoSad = true;
+        this.falso = false;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 2:
-        this.texto = 'ESTAS SEGURA QUE QUERIAS DECIR NO?';
-        this.agrandarFlechas = true;
-        this.agrandarBotonSi = true;
+        this.texto = 'OTRA';
+
+        this.imgActual = this.imagenes[1];
+        this.gatoSad = true;
+        this.gatoSenialando = true;
+        this.falso = false;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 3:
-        this.texto = 'SEGURA?';
-        this.agrandarFlechas = true;
-        this.agrandarBotonSi = true;
+        this.texto = 'UNA MAS';
+
+        this.imgActual = this.imagenes[2];
+        this.gatoSad = true;
+        this.flecha2 = true;
+        this.falso = false;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 4:
-        this.texto = 'SEGURITA SEGURITA?';
-        this.agrandarFlechas = true;
-        this.agrandarBotonSi = true;
+        this.texto = 'UPSIS OTRA';
+        this.imgActual = this.imagenes[3];
+        this.gatoSad = true;
+        this.gatoSenialando2 = true;
+        this.falso = false;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 5:
-        this.texto = 'TOTALMENTE SEGURA?';
-        this.agrandarFlechas = true;
-        this.agrandarBotonSi = true;
+        this.texto = 'ESTA ES LA ULTIMA';
+        this.imgActual = this.imagenes[4];
+        this.gatoSad = true;
+        this.falso = false;
+        this.flecha = true;
+        this.flecha2 = false;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 6:
-        this.texto = 'ESTA BIEN PS';
-        this.agrandarFlechas = false;
-        this.agrandarBotonSi = false;
+        this.imgActual = this.imagenes[5];
+        this.gatoSad = true;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
+        this.btnNoDestruccion = true;
+        const interval = setInterval(() => {
+          this.textoDestruccion--;
+
+          if (this.textoDestruccion < 1) {
+            this.explosion = true;
+
+          }
+        }, 1000);
         break;
     }
     if(this.contador >= 6) {
       this.contador = 0;
       this.falso = true;
+      this.gatoSad = false;
     }
   }
 }

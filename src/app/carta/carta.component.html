@@ -2,31 +2,26 @@
   <h1 class="letra">Tienes una carta</h1>
 
   <div class="subcontenedor" *ngIf="!isExploded">
-    <button
-      type="button"
-      class="btn btn-dark btn-round"
-      (click)="onButtonClick()"
-      [@explodeAnimation]="buttonState"
-      *ngIf="!isExploded"
-    >
-      <img src="assets/logo.png" alt="Botón" class="boton-imagen">
-    </button>
+
+    <div class="field">
+      <button type="button" class="btn btn-dark btn-round" (click)="onButtonClick()" [@explodeAnimation]="buttonState" style="margin-top: 30px;"
+        *ngIf="!isExploded">
+        <img src="assets/logo.png" alt="Botón" class="boton-imagen">
+      </button>
+    </div>
+    <div class="field" style="margin-bottom: 10px;">
+    </div>
   </div>
 
   <div style="position: relative; height: 200px;" *ngIf="isExploded">
-    <div class="carta" [style.height.px]="height" >
+    <div class="carta" [style.height.px]="height">
 
-      <img src="assets/carta.png"  class="cartaImg">
+      <img src="assets/carta.png" class="cartaImg">
     </div>
   </div>
   <div class="subcontenedor2" *ngIf="isExploded">
-    <button
-      type="button"
-      class="btn btn-dark btn-round"
-      (click)="onButtonClick()"
-      [@explodeAnimation]="buttonState"
-      *ngIf="!isExploded"
-    >
+    <button type="button" class="btn btn-dark btn-round" (click)="onButtonClick()" [@explodeAnimation]="buttonState"
+      *ngIf="!isExploded">
     </button>
   </div>
 </div>
