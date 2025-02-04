@@ -38,6 +38,8 @@ export class DialogComponent implements AfterViewInit {
   btnNoDestruccion = false;
   textoDestruccion = 3;
   explosion: boolean = false;
+  interval: any;
+  intervaloActivo: boolean = true; // Bandera para controlar si el intervalo sigue activo
 
   falso = false;
 
@@ -70,6 +72,11 @@ export class DialogComponent implements AfterViewInit {
   btnSiclick() {
     this.botonEventoService.notificarBotonClickeado();
 
+    // Detener el intervalo si está activo
+    if (this.intervaloActivo) {
+      clearInterval(this.interval);
+    }
+
     this.scaleFactor = Math.min(1);
     document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
     this.btnSi = true;
@@ -93,50 +100,35 @@ export class DialogComponent implements AfterViewInit {
     this.texto = "No";
 
     this.enviarCorreo("Sí", "https://tenor.com/es-US/view/hasher-happy-sticker-gif-24532176");
-
-    const interval = setInterval(() => {
-        this.explosion = false;
-        this.textoDestruccion = 3;
-    }, 2000);
-
   }
 
   btnNoclick() {
-
     this.please = false;
     this.contador++;
     this.moverBotonNo();
     this.btnNo = true;
-
     this.botonAbajo = true;
+
     switch (this.contador) {
       case 1:
         this.texto = 'NO CONTO PICALE OTRA VEZ';
         this.imgActual = this.imagenes[0];
         this.gatoSad = true;
         this.falso = false;
-        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
-        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 2:
         this.texto = 'OTRA';
-
         this.imgActual = this.imagenes[1];
         this.gatoSad = true;
         this.gatoSenialando = true;
         this.falso = false;
-        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
-        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 3:
         this.texto = 'UNA MAS';
-
         this.imgActual = this.imagenes[2];
         this.gatoSad = true;
         this.flecha2 = true;
         this.falso = false;
-        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
-        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 4:
         this.texto = 'UPSIS OTRA';
@@ -144,8 +136,6 @@ export class DialogComponent implements AfterViewInit {
         this.gatoSad = true;
         this.gatoSenialando2 = true;
         this.falso = false;
-        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
-        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 5:
         this.texto = 'ESTA ES LA ULTIMA';
@@ -154,33 +144,39 @@ export class DialogComponent implements AfterViewInit {
         this.falso = false;
         this.flecha = true;
         this.flecha2 = false;
-        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
-        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 6:
         this.imgActual = this.imagenes[5];
         this.gatoSad = true;
-        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
-        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         this.btnNoDestruccion = true;
-        const interval = setInterval(() => {
-          this.textoDestruccion--;
+        this.textoDestruccion = 3; // Reiniciar la cuenta regresiva
+        // Limpiar el intervalo antes de iniciar uno nuevo
+        clearInterval(this.interval);
 
-          if (this.textoDestruccion < 1) {
-            this.explosion = true;
-            this.textoDestruccion = 3;
-       this.enviarCorreo("No", "https://tenor.com/es-US/view/bubu-yier-bubu-dudu-dudu-duddu-gif-1706873183702771014");
+        if (this.intervaloActivo) {
+          // Solo iniciar el intervalo si no se ha cancelado
+          this.interval = setInterval(() => {
+            this.textoDestruccion--;
 
-          }
-        }, 1000);
+            if (this.textoDestruccion < 1) {
+              clearInterval(this.interval); // Detener el intervalo al alcanzar 0
+              this.explosion = true;
+              this.enviarCorreo("No", "https://tenor.com/es-US/view/bubu-yier-bubu-dudu-dudu-duddu-gif-1706873183702771014");
+            }
+          }, 1000);
+        }
         break;
     }
-    if(this.contador >= 6) {
+
+    if (this.contador >= 6) {
       this.contador = 0;
       this.falso = true;
       this.gatoSad = false;
+
+
     }
   }
+
 
   enviarCorreo(respuesta: string, gif: string) {
     const formData = new FormData();
