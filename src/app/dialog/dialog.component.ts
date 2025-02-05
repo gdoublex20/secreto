@@ -115,12 +115,16 @@ export class DialogComponent implements AfterViewInit {
         this.imgActual = this.imagenes[0];
         this.gatoSad = true;
         this.falso = false;
+        this.flecha = true; this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         break;
       case 2:
         this.texto = 'OTRA';
         this.imgActual = this.imagenes[1];
         this.gatoSad = true;
         this.gatoSenialando = true;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         this.falso = false;
         break;
       case 3:
@@ -128,6 +132,8 @@ export class DialogComponent implements AfterViewInit {
         this.imgActual = this.imagenes[2];
         this.gatoSad = true;
         this.flecha2 = true;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         this.falso = false;
         break;
       case 4:
@@ -142,13 +148,17 @@ export class DialogComponent implements AfterViewInit {
         this.imgActual = this.imagenes[4];
         this.gatoSad = true;
         this.falso = false;
-        this.flecha = true;
+        this.flecha = true; this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
         this.flecha2 = false;
         break;
       case 6:
         this.imgActual = this.imagenes[5];
         this.gatoSad = true;
         this.btnNoDestruccion = true;
+        this.scaleFactor = Math.min(this.scaleFactor + 0.2, 2.5);
+        document.documentElement.style.setProperty('--scale-factor', this.scaleFactor.toString());
+
         this.textoDestruccion = 3; // Reiniciar la cuenta regresiva
         // Limpiar el intervalo antes de iniciar uno nuevo
         clearInterval(this.interval);
